@@ -17,7 +17,7 @@ export default function Index() {
     <SafeAreaView style={style.container}>
       <Header />
       <View style={style.content}>
-        <Text style={style.text}>Welcome to your app!</Text>
+        <Text style={style.text}>Note List</Text>
         <Pressable style={style.addBtn} onPress={() => navigation.navigate("addnote")}>
           <Ionicons name="add" size={60} color={ theme.tint } />
         </Pressable>
@@ -67,9 +67,9 @@ const styles = (theme, colorScheme) => ({
     bottom: 0,
     alignItems: 'center',
     borderRadius: 50,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: theme.tint,
-    padding: 5,
+    // padding: 3,
     marginBottom: 5,
     justifyContent: 'center',
   },

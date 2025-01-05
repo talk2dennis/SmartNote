@@ -13,6 +13,11 @@ const Header = () => {
         setModalVisible(!modalVisible);
     };
 
+    const handleNavigate = () => {
+        toggleModal();
+        navigation.navigate('addnote');
+    };
+
     const style = styles(theme);
 
     return (
@@ -35,7 +40,7 @@ const Header = () => {
                 <Pressable style={style.modalBackground} onPress={toggleModal}>
                     <View style={style.modalContainer}>
                         <Text style={style.modalText}>Options</Text>
-                        <Pressable onPress={() => navigation.navigate("addnote")}>
+                        <Pressable onPress={handleNavigate}>
                             <Text style={style.modalOption}>Add Note</Text>
                         </Pressable>
                         <Pressable onPress={toggleModal}>
