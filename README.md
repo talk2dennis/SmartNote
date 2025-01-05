@@ -1,50 +1,79 @@
-# Welcome to your Expo app 👋
+# SmartNote
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Overview
 
-## Get started
+SmartNote is a mobile application designed to enhance users' note taking experiences by providing a robust platform for note-taking, study planning, and interactive learning. The app allows users to categorize notes by subjects, integrate flashcards for quick review, and schedule study sessions—all while using local storage for offline access.
 
-1. Install dependencies
+## Features
 
+- **Categorized Notes**: Organize your notes by subjects and custom categories.
+- **Rich Text Editing**: Support for Markdown formatting to create visually appealing notes.
+- **Flashcard Integration**: Convert notes into flashcards for effective revision.
+- **Study Planner**: Schedule study sessions and set reminders for upcoming tasks.
+- **Offline Access**: Access and edit notes without an internet connection.
+- **Custom Themes**: Choose from different themes to personalize your app experience.
+- **Analytics Dashboard**: Visualize your study habits and track progress.
+
+## Technology Stack
+
+- **Framework**: Expo
+- **State Management**: React Hooks
+- **Local Storage**: AsyncStorage
+- **Navigation**: Expo Router
+- **Styling**: React Native Styles
+
+## Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/talk2dennis/SmartNote.git
+   cd SmartNote
+   ```
+
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. Start the app
+## Usage
 
+- **Create Notes**: Navigate to the "Add Note" screen to create a new note. Use Markdown for formatting.
+- **Categorize Notes**: Assign categories and tags to your notes for better organization.
+- **Flashcards**: Convert any note into flashcards for quick revision.
+- **Study Planner**: Schedule your study sessions and set reminders.
+- **Analytics**: Access the dashboard to visualize your study habits.
+
+## Contributing
+
+We welcome contributions! To contribute to SmartNote, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch:
    ```bash
-    npx expo start
+   git checkout -b feature/YourFeature
    ```
+3. Make your changes and commit them:
+   ```bash
+   git commit -m 'Add new feature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/YourFeature
+   ```
+5. Open a pull request.
 
-In the output, you'll find options to open the app in a
+## License
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Acknowledgements
 
-## Get a fresh project
+- **React Native** - The framework for building native apps.
+- **Expo** - Tools for React Native development.
+- **AsyncStorage** - Simple, unencrypted, asynchronous, persistent, key-value storage.
 
-When you're ready, run:
+## Contact
 
-```bash
-npm run reset-project
-```
+For questions or feedback, feel free to reach out at [adigwedennis@gmail.com].
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Thank you for using SmartNote! Happy studying!
