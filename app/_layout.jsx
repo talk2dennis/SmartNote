@@ -8,6 +8,7 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <Stack options={{ headerShown: false }}>
           <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="addnote" options={{ headerShown: false }} />
           {/* <Stack.Screen name="todos/[id]" options={{ headerShown: false }} /> */}
         </Stack>
       </SafeAreaProvider>
