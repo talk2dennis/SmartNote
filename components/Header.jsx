@@ -39,10 +39,10 @@ const Header = () => {
             >
                 <Pressable style={style.modalBackground} onPress={toggleModal}>
                     <View style={style.modalContainer}>
-                        <Text style={style.modalText}>Options</Text>
                         <Pressable onPress={handleNavigate}>
                             <Text style={style.modalOption}>Add Note</Text>
                         </Pressable>
+                            <Text style={style.modalOption}>Change View</Text>
                         <Pressable onPress={toggleModal}>
                             <Text style={style.modalOption}>Cancel</Text>
                         </Pressable>
@@ -73,8 +73,8 @@ const styles = (theme) => ({
         fontWeight: 'bold',
     },
     logo: {
-        width: 40,
-        height: 40,
+        width: 50,
+        height: 50,
         resizeMode: 'contain',
     },
     button: {
@@ -88,8 +88,11 @@ const styles = (theme) => ({
     },
     modalContainer: {
         width: '80%',
+        maxWidth: 200,
+        marginTop: 60,
+        marginRight: 10,
         backgroundColor: theme.background,
-        padding: 20,
+        padding: 10,
         borderRadius: 10,
     },
     modalText: {

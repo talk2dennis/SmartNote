@@ -6,6 +6,9 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Header from '../components/Header';
+import TodoList from '../components/TodoList';
+import todos from '../constants/todosData';
+
 
 export default function Index() {
   const { colorScheme, theme } = useContext(ThemeContext);
@@ -17,9 +20,9 @@ export default function Index() {
     <SafeAreaView style={style.container}>
       <Header />
       <View style={style.content}>
-        <Text style={style.text}>Note List</Text>
+        <TodoList todos={todos} />
         <Pressable style={style.addBtn} onPress={() => navigation.navigate("addnote")}>
-          <Ionicons name="add" size={60} color={ theme.tint } />
+          <Ionicons name="add" size={40} color={ theme.tint } />
         </Pressable>
       </View>
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
@@ -64,13 +67,11 @@ const styles = (theme, colorScheme) => ({
   },
   addBtn: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 5,
     alignItems: 'center',
     borderRadius: 50,
     borderWidth: 5,
     borderColor: theme.tint,
-    // padding: 3,
-    marginBottom: 20,
     justifyContent: 'center',
   },
 });

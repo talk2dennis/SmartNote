@@ -8,6 +8,10 @@ export const colors = {
     icon: '#6C757D', // Neutral gray for icons
     tabIconDefault: '#6C757D', // Neutral gray for inactive tab icons
     tabIconSelected: '#0056b3', // Darker blue for selected tab icon
+    cardBackground: '#FFFFFF', // White background for cards
+    textSecondary: '#6C757D', // Neutral gray for secondary text
+    tagBackground: '#E9ECEF', // Light gray background for tags
+    tagText: '#495057', // Darker gray text for tags
   },
   dark: {
     text: '#FFFFFF', // White text for dark theme
@@ -18,5 +22,9 @@ export const colors = {
     icon: '#B0B3B8', // Light gray for icons
     tabIconDefault: '#B0B3B8', // Light gray for inactive tab icons
     tabIconSelected: '#87CEFA', // Lighter blue for selected tab icon
+    cardBackground: '#1E1E1E', // Darker gray for card backgrounds
+    textSecondary: '#A9A9A9', // Soft gray for secondary text
+    tagBackground: '#2C2C2C', // Dark gray background for tags
+    tagText: '#D3D3D3', // Light gray text for tags
   },
 };

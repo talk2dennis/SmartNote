@@ -30,6 +30,7 @@ const AddNote = () => {
                     style={style.input}
                     value={title}
                     onChangeText={setTitle}
+                    maxLength={50}
                     placeholder="Enter your title here..."
                     placeholderTextColor={'gray'}
                 />
