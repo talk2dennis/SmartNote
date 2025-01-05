@@ -23,7 +23,7 @@ const Header = () => {
     return (
         <>
         <View style={style.container}>
-            <Image source={require('../assets/images/react-logo.png')} style={style.logo} />
+            <Image source={require('../assets/images/icon.png')} style={style.logo} />
             <Text style={style.text}>SmartNote</Text>
             <Pressable style={style.button} onPress={toggleModal}>
                 <Entypo name="dots-three-vertical" size={24} color={theme.tint} />

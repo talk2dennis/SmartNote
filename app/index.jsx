@@ -67,10 +67,10 @@ const styles = (theme, colorScheme) => ({
     bottom: 0,
     alignItems: 'center',
     borderRadius: 50,
-    borderWidth: 2,
+    borderWidth: 5,
     borderColor: theme.tint,
     // padding: 3,
-    marginBottom: 5,
+    marginBottom: 20,
     justifyContent: 'center',
   },
 });
