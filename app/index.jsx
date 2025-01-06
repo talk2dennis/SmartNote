@@ -7,15 +7,18 @@ import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Header from '../components/Header';
 import TodoList from '../components/TodoList';
-import todos from '../constants/todosData';
+import { NoteContext } from "../context/NoteContext";
+// import todos from '../constants/todosData';
 
 
 export default function Index() {
   const { colorScheme, theme } = useContext(ThemeContext);
+  const { notes } = useContext(NoteContext);
   const navigation = useNavigation();
 
   // sort todos by in reverse order
-  todos.sort((a, b) => ( b.id - a.id ));
+  notes.sort((a, b) => ( b.id - a.id ));
+  console.log(notes);
 
   const style = styles(theme, colorScheme);
 
@@ -23,7 +26,7 @@ export default function Index() {
     <SafeAreaView style={style.container}>
       <Header />
       <View style={style.content}>
-        <TodoList todos={todos} />
+        <TodoList todos={notes} />
         <Pressable style={style.addBtn} onPress={() => navigation.navigate("addnote")}>
           <Ionicons name="add" size={40} color={ theme.tint } />
         </Pressable>

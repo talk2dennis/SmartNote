@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { ThemeContext } from "../context/ThemeContext";
 import { useNavigation } from '@react-navigation/native';
+import { NoteContext } from "../context/NoteContext";
 
 const AddNote = () => {
     const { theme } = useContext(ThemeContext);
@@ -11,10 +12,21 @@ const AddNote = () => {
     const [text, setText] = useState("");
     const [tags, setTags] = useState("");
 
+    const { addNote, notes } = useContext(NoteContext);
+
     const navigation = useNavigation();
 
     const handleAddNote = () => {
         // Add note logic here (e.g., call addNote)
+        addNote({
+            id: notes.length + 1,
+            title,
+            description: text,
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+            completed: false,
+            tags: tags.split(",").map(tag => tag.trim()),
+        });
         setText("");
         setTitle("");
         setTags("");
