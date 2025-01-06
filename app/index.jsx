@@ -12,7 +12,10 @@ import todos from '../constants/todosData';
 
 export default function Index() {
   const { colorScheme, theme } = useContext(ThemeContext);
-  const navigation = useNavigation(); // Hook to use navigation
+  const navigation = useNavigation();
+
+  // sort todos by in reverse order
+  todos.sort((a, b) => ( b.id - a.id ));
 
   const style = styles(theme, colorScheme);
 
