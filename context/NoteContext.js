@@ -12,7 +12,7 @@ export const NoteProvider = ({ children }) => {
         const loadNotes = async () => {
             try {
                 const storedNotes = await AsyncStorage.getItem('notes');
-                if (storedNotes !== null && storedNotes !== undefined && storedNotes.length < 1) {
+                if (storedNotes !== null && storedNotes !== undefined) {
                     setNotes(JSON.parse(storedNotes));
                 } else {
                     setNotes([{ id: 1, title: "Welcome to Notes", description: "You can add, edit, and delete notes in this app.", createdAt: Date.now(), completed: false, tags: ["welcome"] }]);
@@ -29,7 +29,7 @@ export const NoteProvider = ({ children }) => {
     useEffect(() => {
         const saveNotes = async () => {
             try {
-                await AsyncStorage.setItem('notes', JSON.stringify(notes));
+                const savedNote = await AsyncStorage.setItem('notes', JSON.stringify(notes));
             } catch (error) {
                 console.error("Failed to save notes:", error);
             }
@@ -39,7 +39,7 @@ export const NoteProvider = ({ children }) => {
     }, [notes]);
 
     const addNote = (note) => {
-        setNotes((prevNotes) => [...prevNotes, note]);
+        setNotes((prevNotes) => [ note, ...prevNotes]);
     };
 
     const removeNote = (id) => {
