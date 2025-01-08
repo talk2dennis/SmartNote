@@ -15,10 +15,7 @@ export default function Index() {
   const { colorScheme, theme } = useContext(ThemeContext);
   const { notes } = useContext(NoteContext);
   const navigation = useNavigation();
-
-  // sort todos by in reverse order
-  notes.sort((a, b) => ( b.id - a.id ));
-  console.log(notes);
+  
 
   const style = styles(theme, colorScheme);
 
