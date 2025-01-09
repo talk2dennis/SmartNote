@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Text, View, FlatList, Pressable } from "react-native";
+import { useRouter } from 'expo-router';
 import OptionModal from "./OptionModal";
 import { ThemeContext } from "../context/ThemeContext";
 
@@ -8,11 +9,17 @@ const TodoList = ({ todos }) => {
   const [modalVisible, setModalVisible] = useState(false); // Modal visibility
   const [selectedTodo, setSelectedTodo] = useState(null); // Selected item for the modal
   const style = styles(theme);
+  const router = useRouter();
 
   // Utility function to format the creation date
   const formatDate = (timestamp) => {
     const date = new Date(timestamp);
     return date.toLocaleDateString();
+  };
+
+  // Handle press event
+  const handlePress = (id) => {
+    router.push(`notes/${id}`);
   };
 
   // Show modal and set the selected item
@@ -36,6 +43,7 @@ const TodoList = ({ todos }) => {
         renderItem={({ item }) => (
           <Pressable
             style={style.card}
+            onPress={ () => handlePress(item.id)}
             onLongPress={() => handleLongPress(item)} // Open modal with item
           >
             <Text style={style.title}>{item.title}</Text>

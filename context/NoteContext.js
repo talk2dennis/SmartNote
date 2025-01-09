@@ -50,8 +50,13 @@ export const NoteProvider = ({ children }) => {
         setNotes((prevNotes) => prevNotes.filter(note => note.id !== id));
     };
 
+    // get note by id
+    const getNoteById = (id) => {
+        return notes.find(note => note.id === id);
+    };
+
     return (
-        <NoteContext.Provider value={{ notes, addNote, removeNote }}>
+        <NoteContext.Provider value={{ notes, addNote, removeNote, getNoteById }}>
             {children}
         </NoteContext.Provider>
     );

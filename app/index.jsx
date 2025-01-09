@@ -15,8 +15,6 @@ export default function Index() {
   const { colorScheme, theme } = useContext(ThemeContext);
   const { notes } = useContext(NoteContext);
   const navigation = useNavigation();
-  
-
   const style = styles(theme, colorScheme);
 
   return (
