@@ -35,7 +35,7 @@ const Header = () => {
                 animationType="fade"
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={toggleModal} // Close modal on back press (Android)
+                onRequestClose={toggleModal}
             >
                 <Pressable style={style.modalBackground} onPress={toggleModal}>
                     <View style={style.modalContainer}>
@@ -56,6 +56,8 @@ const Header = () => {
 const styles = (theme) => ({
     container: {
         width: '100%',
+        maxWidth: 1024,
+        marginHorizontal: 'auto',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -81,12 +83,16 @@ const styles = (theme) => ({
         padding: 8,
     },
     modalBackground: {
-        flex: 1,
+        width: '100%',
+        maxWidth: 1024,
+        height: "100%",
+        marginHorizontal: "auto",
         // justifyContent: 'center',
         alignItems: 'flex-end',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalContainer: {
+        // position: 'relative',
         width: '80%',
         maxWidth: 200,
         marginTop: 60,

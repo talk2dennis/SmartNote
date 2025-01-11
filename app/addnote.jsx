@@ -5,21 +5,40 @@ import { StatusBar } from "expo-status-bar";
 import { ThemeContext } from "../context/ThemeContext";
 import { useNavigation } from '@react-navigation/native';
 import { NoteContext } from "../context/NoteContext";
+import Notification from "../components/Notification";
 
 const AddNote = () => {
     const { theme } = useContext(ThemeContext);
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [tags, setTags] = useState("");
+    const [ notVisible, setNotVisible ] = useState(false);
+    const [ msg, setMsg ] = useState('');
+    const [ saved, setSaved ] = useState(false);
 
     const { addNote, notes } = useContext(NoteContext);
 
     const navigation = useNavigation();
 
+    const handleDismiss = () =>{
+        setNotVisible(false);
+        setSaved(false);
+    }
+
+    const handleNotification = (msg) => {
+        setNotVisible(true);
+        setMsg(msg);
+    }
+
     const handleAddNote = () => {
-        // Add note logic here (e.g., call addNote)
+        // Add note
+        if (!title || !text) {
+            handleNotification("Title and note content cannot be empty.");
+            return;
+        }
+        const id = notes.length > 0 ? notes[notes.length - 1].id + 1 : 1;
         addNote({
-            id: notes.length + 1,
+            id: id,
             title,
             description: text,
             createdAt: Date.now(),
@@ -30,14 +49,17 @@ const AddNote = () => {
         setText("");
         setTitle("");
         setTags("");
-        navigation.goBack(); // Navigate back after saving
+        setSaved(true);
+        handleNotification("Note saved successfully");
     };
 
     const style = styles(theme);
 
+
     return (
         <SafeAreaView style={style.container}>
             <View style={style.content}>
+            {notVisible && <Notification msg={msg} visible={notVisible} onDismiss={handleDismiss} saved={saved} />}
                 <TextInput
                     style={style.input}
                     value={title}

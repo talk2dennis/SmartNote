@@ -13,7 +13,9 @@ export const NoteProvider = ({ children }) => {
             try {
                 const storedNotes = await AsyncStorage.getItem('notes');
                 if (storedNotes !== null && storedNotes !== undefined) {
-                    setNotes(JSON.parse(storedNotes));
+                    const notesJson = JSON.parse(storedNotes);
+                    notesJson.sort((a, b) => b.id - a.id);
+                    setNotes(notesJson);
                 } else {
                     setNotes([{ id: 1, title: "Welcome to Notes", description: "You can add, edit, and delete notes in this app.", createdAt: Date.now(), completed: false, tags: ["welcome"] }]);
                 }
@@ -39,15 +41,22 @@ export const NoteProvider = ({ children }) => {
     }, [notes]);
 
     const addNote = (note) => {
-        setNotes((prevNotes) => [ note, ...prevNotes]);
+        // const id = notes.length > 0 ? notes[notes.length - 1].id + 1 : 1;
+        // note.id = id;
+        setNotes((prevNotes) => [note, ...prevNotes]);
     };
 
     const removeNote = (id) => {
         setNotes((prevNotes) => prevNotes.filter(note => note.id !== id));
     };
 
+    // get note by id
+    const getNoteById = (id) => {
+        return notes.find(note => note.id === id);
+    };
+
     return (
-        <NoteContext.Provider value={{ notes, addNote, removeNote }}>
+        <NoteContext.Provider value={{ notes, addNote, removeNote, getNoteById }}>
             {children}
         </NoteContext.Provider>
     );
