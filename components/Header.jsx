@@ -57,6 +57,7 @@ const styles = (theme) => ({
     container: {
         width: '100%',
         maxWidth: 1024,
+        marginHorizontal: 'auto',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

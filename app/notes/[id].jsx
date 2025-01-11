@@ -2,6 +2,7 @@ import { useLocalSearchParams } from "expo-router";
 import { NoteContext } from "../../context/NoteContext";
 import { useNavigation } from '@react-navigation/native';
 import { useContext, useEffect } from "react";
+import Header from "../../components/Header";
 import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import { ThemeContext } from "../../context/ThemeContext";
 
@@ -20,8 +21,10 @@ const Note = () => {
 
 
     return (
-        <ScrollView style={style.container}
-            scrollbars="none"
+        <>
+            <Header />
+            <ScrollView style={style.container}
+            showsHorizontalScrollIndicator={false}
         >
             <Text style={style.title}>{note.title}</Text>
             <Text style={style.description}>{note.description}</Text>
@@ -30,6 +33,8 @@ const Note = () => {
                 <Text style={style.buttonText}>Go Back</Text>
             </Pressable>
         </ScrollView>
+        </>
+        
     );
 }
 

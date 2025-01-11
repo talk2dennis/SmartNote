@@ -41,8 +41,8 @@ export const NoteProvider = ({ children }) => {
     }, [notes]);
 
     const addNote = (note) => {
-        const id = notes.length > 0 ? notes[notes.length - 1].id + 1 : 1;
-        note.id = id;
+        // const id = notes.length > 0 ? notes[notes.length - 1].id + 1 : 1;
+        // note.id = id;
         setNotes((prevNotes) => [note, ...prevNotes]);
     };
 
