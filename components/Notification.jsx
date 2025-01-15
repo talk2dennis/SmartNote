@@ -1,5 +1,5 @@
 import { useEffect, useRef, useContext } from "react";
-import { View, Text, Animated, Dimensions, Li } from "react-native";
+import { View, Text, Animated, Dimensions, StyleSheet } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { ThemeContext } from "../context/ThemeContext";
 
@@ -46,7 +46,7 @@ const Notification = ({ visible, msg, onDismiss, saved }) => {
     )
 };
 
-const styles = (theme) => ({
+const styles = (theme) => StyleSheet.create({
     container: {
         height: 5,
         backgroundColor: 'green',

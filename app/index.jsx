@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Text, View, Pressable } from "react-native";
+import { Text, View, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "../context/ThemeContext";
 import { StatusBar } from "expo-status-bar";
@@ -31,7 +31,7 @@ export default function Index() {
   );
 }
 
-const styles = (theme, colorScheme) => ({
+const styles = (theme, colorScheme) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.background,

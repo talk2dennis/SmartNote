@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Text, View, Image, Pressable, Modal } from "react-native";
+import { Text, View, Image, Pressable, Modal, StyleSheet } from "react-native";
 import Entypo from '@expo/vector-icons/Entypo';
 import { ThemeContext } from "../context/ThemeContext";
 import { useNavigation } from '@react-navigation/native';
@@ -53,7 +53,7 @@ const Header = () => {
     );
 };
 
-const styles = (theme) => ({
+const styles = (theme) => StyleSheet.create({
     container: {
         width: '100%',
         maxWidth: 1024,
@@ -62,6 +62,7 @@ const styles = (theme) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 16,
+        marginBottom: 10,
         backgroundColor: theme.background,
         elevation: 4,
         shadowColor: '#000',

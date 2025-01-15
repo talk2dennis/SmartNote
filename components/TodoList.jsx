@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Text, View, FlatList, Pressable } from "react-native";
+import { Text, View, FlatList, Pressable, StyleSheet } from "react-native";
 import { useRouter } from 'expo-router';
 import OptionModal from "./OptionModal";
 import { ThemeContext } from "../context/ThemeContext";
@@ -76,7 +76,7 @@ const TodoList = ({ todos }) => {
   );
 };
 
-const styles = (theme) => ({
+const styles = (theme) => StyleSheet.create({
   container: {
     flex: 1, // Ensures the container fills the screen
     width: "100%",

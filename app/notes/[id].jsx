@@ -43,6 +43,7 @@ const styles = (theme) => StyleSheet.create({
         width: "100%",
         maxWidth: 1024,
         marginHorizontal: "auto",
+        padding: 15,
         scrollBehavior: 'smooth',
         backgroundColor: theme.background,
         padding: 20,

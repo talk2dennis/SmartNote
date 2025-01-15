@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
-import { Text, View, TextInput, Pressable } from "react-native";
+import { Text, View, TextInput, Pressable, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { ThemeContext } from "../context/ThemeContext";
 import { useNavigation } from '@react-navigation/native';
 import { NoteContext } from "../context/NoteContext";
 import Notification from "../components/Notification";
+import Header from "../components/Header";
 
 const AddNote = () => {
     const { theme } = useContext(ThemeContext);
@@ -36,7 +37,7 @@ const AddNote = () => {
             handleNotification("Title and note content cannot be empty.");
             return;
         }
-        const id = notes.length > 0 ? notes[notes.length - 1].id + 1 : 1;
+        const id = notes.length > 0 ? notes[0].id + 1 : 1;
         addNote({
             id: id,
             title,
@@ -58,6 +59,7 @@ const AddNote = () => {
 
     return (
         <SafeAreaView style={style.container}>
+            <Header />
             <View style={style.content}>
             {notVisible && <Notification msg={msg} visible={notVisible} onDismiss={handleDismiss} saved={saved} />}
                 <TextInput
@@ -97,7 +99,7 @@ const AddNote = () => {
     );
 };
 
-const styles = (theme) => ({
+const styles = (theme) => StyleSheet.create({
     container: {
         flex: 1,
         width: "100%",
