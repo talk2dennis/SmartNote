@@ -1,7 +1,8 @@
 import { useLocalSearchParams } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { NoteContext } from "../../context/NoteContext";
 import { useNavigation } from '@react-navigation/native';
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Header from "../../components/Header";
 import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -19,40 +20,57 @@ const Note = () => {
 
     const style = styles(theme);
 
-
     return (
-        <>
+        <SafeAreaView style={style.safeArea}>
             <Header />
-            <ScrollView style={style.container}
-            showsHorizontalScrollIndicator={false}
-        >
-            <Text style={style.title}>{note.title}</Text>
-            <Text style={style.description}>{note.description}</Text>
-            <Text style={style.date}>Created: {new Date(note.createdAt).toLocaleDateString()}</Text>
+            <ScrollView
+                contentContainerStyle={style.scrollContent}
+                showsHorizontalScrollIndicator={false}
+            >
+                <Text
+                    style={style.title}
+                    selectable={true}
+                >
+                    {note.title}
+                </Text>
+                <Text style={style.description}>{note.description}</Text>
+                <Text style={style.date}>Created: {new Date(note.createdAt).toLocaleDateString()}</Text>
+
+            </ScrollView>
             <Pressable style={style.button} onPress={() => navigation.goBack()}>
                 <Text style={style.buttonText}>Go Back</Text>
             </Pressable>
-        </ScrollView>
-        </>
-        
+        </SafeAreaView>
     );
-}
+};
 
 const styles = (theme) => StyleSheet.create({
-    container: {
-        width: "100%",
+    safeArea: {
+        flex: 1,
+        height: "100%",
+        width: '100%',
         maxWidth: 1024,
-        marginHorizontal: "auto",
-        padding: 15,
-        scrollBehavior: 'smooth',
+        alignSelf: 'center',
         backgroundColor: theme.background,
-        padding: 20,
+    },
+    scrollContent: {
+        borderRadius: 8,
+        padding: 10,
+        marginHorizontal: 10,
+        shadowColor: "#000",
+        borderRadius: 8,
+        borderLeftColor: theme.tint,
+        borderLeftWidth: 1,
     },
     title: {
         color: theme.text,
+        borderBottomColor: theme.text,
+        borderBottomWidth: 1,
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 10,
+        padding: 5,
+        marginBottom: 15,
+        textAlign: "center",
     },
     description: {
         color: theme.text,
@@ -65,15 +83,18 @@ const styles = (theme) => StyleSheet.create({
         marginBottom: 20,
     },
     button: {
-        backgroundColor: theme.buttonBackground,
+        backgroundColor: 'green',
         padding: 16,
         borderRadius: 8,
-        width: '100%',
-        maxWidth: 300,
-        alignItems: 'center',
+        width: '90%',
+        maxWidth: 500,
+        margin: 20,
     },
     buttonText: {
         color: theme.buttonTextColor,
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
 });
 

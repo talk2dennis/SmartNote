@@ -78,10 +78,8 @@ const TodoList = ({ todos }) => {
 
 const styles = (theme) => StyleSheet.create({
   container: {
-    flex: 1, // Ensures the container fills the screen
-    width: "100%",
+    flex: 1,
     backgroundColor: theme.background,
-    marginBottom: 40,
   },
   card: {
     backgroundColor: theme.cardBackground,

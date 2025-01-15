@@ -106,11 +106,11 @@ const styles = (theme) => StyleSheet.create({
         maxWidth: 1024,
         marginHorizontal: "auto",
         backgroundColor: theme.background,
-        padding: 16,
     },
     content: {
         flex: 1,
         justifyContent: "space-between",
+        padding: 16,
     },
     input: {
         borderWidth: 1,
