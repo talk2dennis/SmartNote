@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const Header = () => {
     const [modalVisible, setModalVisible] = useState(false);
-    const { theme } = useContext(ThemeContext);
+    const { colorScheme, theme } = useContext(ThemeContext);
     const navigation = useNavigation();
 
     const toggleModal = () => {
@@ -18,7 +18,7 @@ const Header = () => {
         navigation.navigate('addnote');
     };
 
-    const style = styles(theme);
+    const style = styles(theme, colorScheme);
 
     return (
         <>
@@ -53,7 +53,7 @@ const Header = () => {
     );
 };
 
-const styles = (theme) => StyleSheet.create({
+const styles = (theme, colorScheme) => StyleSheet.create({
     container: {
         width: '100%',
         maxWidth: 1024,
@@ -64,7 +64,7 @@ const styles = (theme) => StyleSheet.create({
         marginBottom: 10,
         backgroundColor: theme.background,
         elevation: 4,
-        shadowColor: '#000',
+        shadowColor: colorScheme === 'light' ? "#000" : "#fff",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.4,
         shadowRadius: 4,
@@ -87,6 +87,7 @@ const styles = (theme) => StyleSheet.create({
         height: "100%",
         // justifyContent: 'center',
         alignItems: 'flex-end',
+        alignSelf: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalContainer: {

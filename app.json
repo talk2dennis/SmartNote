@@ -2,6 +2,7 @@
   "expo": {
     "name": "SmartNote",
     "slug": "SmartNote",
+    "author": "Dennis",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/images/icon.png",

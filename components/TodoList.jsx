@@ -59,7 +59,7 @@ const TodoList = ({ todos }) => {
                 </Text>
               ))}
             </View>
-            <Text style={style.date}>Created: {formatDate(item.createdAt)}</Text>
+            <Text style={style.date}>{ item.updatedAt ? 'Updated: ' : 'Created: '} {item.updatedAt ? formatDate(item.updatedAt) : formatDate(item.createdAt)}</Text>
           </Pressable>
         )}
       />
@@ -115,7 +115,7 @@ const styles = (theme) => StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 4,
     marginRight: 4,
-    marginBottom: 4,
+    marginTop: 8,
     fontSize: 12,
   },
   date: {
