@@ -54,11 +54,6 @@ const Note = () => {
         setSaved(false);
     }
 
-    useEffect(() => {
-        console.log("Updated msg:", msg);
-        console.log("Updated notVisible:", notVisible);
-    }, [msg, notVisible]);
-
     return (
         <SafeAreaView style={style.safeArea}>
             {notVisible && (

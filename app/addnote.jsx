@@ -37,7 +37,6 @@ const AddNote = ({ note, handleNotificationUpdate }) => {
 
     // handle back press
     const handleBackPress = () => {
-        note.editing = false;
         navigation.goBack();
     };
 
