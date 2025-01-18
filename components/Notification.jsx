@@ -26,7 +26,7 @@ const Notification = ({ visible, msg, onDismiss, saved }) => {
                     if(saved) {
                         navigation.navigate('index');
                     }
-                }, 3000);
+                }, 2000);
             })
         } else {
             widthAnim.setValue(0);

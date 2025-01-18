@@ -126,7 +126,7 @@ const AddNote = ({ note, handleNotificationUpdate }) => {
                         <Text style={style.buttonText}>Cancel</Text>
                     </Pressable>
                     <Pressable style={style.button} onPress={handleAddNote}>
-                        <Text style={style.buttonText}>Save Note</Text>
+                        <Text style={style.buttonText}>{ note ? "Update Note" : "Save Note" }</Text>
                     </Pressable>
                 </View>
             </View>

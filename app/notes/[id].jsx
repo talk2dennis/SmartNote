@@ -6,8 +6,9 @@ import { useContext, useMemo, useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Notification from "../../components/Notification";
 import AddNote from "../addnote";
-import { Text, Pressable, StyleSheet, ScrollView } from "react-native";
+import { Text, Pressable, StyleSheet, ScrollView, View } from "react-native";
 import { ThemeContext } from "../../context/ThemeContext";
+import { formatDate } from "../../utils/utils";
 
 const Note = () => {
     const [editing, setEditing] = useState(false);
@@ -56,20 +57,24 @@ const Note = () => {
 
     return (
         <SafeAreaView style={style.safeArea}>
-            {notVisible && (
-                <Notification
-                    key={msg}
-                    msg={msg}
-                    visible={notVisible}
-                    onDismiss={handleDismiss}
-                    saved={saved}
-                />
-            )}
             {!editing ? <Header /> : null}
             {editing ? (
                 <AddNote note={note} handleNotificationUpdate={handleNotificationUpdate} />
             ) : (
                 <>
+                    <View
+                        style={style.notification}
+                    >
+                        {notVisible && (
+                            <Notification
+                                key={msg}
+                                msg={msg}
+                                visible={notVisible}
+                                onDismiss={handleDismiss}
+                                saved={saved}
+                            />
+                        )}
+                    </View>
                     <ScrollView
                         contentContainerStyle={style.scrollContent}
                         showsHorizontalScrollIndicator={false}
@@ -77,13 +82,15 @@ const Note = () => {
                         <Text style={style.title} selectable={true}>
                             {note.title}
                         </Text>
-                        <Text onPress={() => setEditing(!editing)} style={style.description}>{note.description}</Text>
-                        <Text style={style.date}>
-                            Created: {note.createdAt !== "Unknown date"
-                                ? new Date(note.createdAt).toLocaleDateString()
-                                : note.createdAt}
-                        </Text>
+                        <Text
+                            onPress={() => setEditing(!editing)}
+                            style={style.description}
+                            selectable={true}
+                        >{note.description}</Text>
                     </ScrollView>
+                    <Text style={style.date}>
+                        { note.updatedAt ? 'Updated: ' : 'Created: '} {note.updatedAt ? formatDate(note.updatedAt) : formatDate(note.createdAt)}
+                        </Text>
                     <Pressable style={style.button} onPress={() => navigation.goBack()}>
                         <Text style={style.buttonText}>Go Back</Text>
                     </Pressable>
@@ -101,13 +108,15 @@ const styles = (theme) => StyleSheet.create({
         alignSelf: 'center',
         backgroundColor: theme.background,
     },
+    notification: {
+        position: 'absolute',
+        top: '15%',
+    },
     scrollContent: {
         borderRadius: 8,
         padding: 10,
         marginHorizontal: 10,
         shadowColor: "#000",
-        borderLeftColor: theme.tint,
-        borderLeftWidth: 1,
     },
     title: {
         color: theme.text,
@@ -120,17 +129,27 @@ const styles = (theme) => StyleSheet.create({
         textAlign: "center",
     },
     description: {
+        minHeight: '85%',
         color: theme.text,
         fontSize: 18,
         marginBottom: 10,
+        padding: 10,
+        borderRadius: 10,
+        textAlign: 'justify',
+        borderLeftColor: theme.tint,
+        borderLeftWidth: 1,
+        borderRightColor: theme.tint,
+        borderRightWidth: 0.5,
     },
     date: {
         color: theme.text,
         fontSize: 16,
-        marginBottom: 20,
+        padding: 10,
+        marginRight: 20,
+        textAlign: 'right'
     },
     button: {
-        backgroundColor: 'green',
+        backgroundColor: theme.buttonBackground,
         padding: 16,
         borderRadius: 8,
         width: '90%',

@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Text, View, Pressable, StyleSheet, Dimensions } from "react-native";
+import { useContext, useState } from "react";
+import { TextInput, View, Pressable, StyleSheet, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "../context/ThemeContext";
 import { StatusBar } from "expo-status-bar";
@@ -12,6 +12,7 @@ import { NoteContext } from "../context/NoteContext";
 const { width } = Dimensions.get("window");
 
 export default function Index() {
+  const [ search, setSearch ] = useState('');
   const { colorScheme, theme } = useContext(ThemeContext);
   const { notes } = useContext(NoteContext);
   const navigation = useNavigation();
@@ -21,6 +22,13 @@ export default function Index() {
     <SafeAreaView style={style.container}>
       <Header />
       <View style={style.content}>
+        <View>
+          <TextInput
+            style={style.search}
+            value={search}
+            onChangeText={setSearch}
+          />
+        </View>
         <TodoList todos={notes} />
         <Pressable style={style.addBtn} onPress={() => navigation.navigate("addnote")}>
           <Ionicons name="add" size={40} color={theme.tint} />
@@ -45,6 +53,13 @@ const styles = (theme, colorScheme) =>
       flex: 1,
       width: '100%',
       paddingHorizontal: 10,
+    },
+    search: {
+      width: 'auto',
+      borderColor: colorScheme ==='black' ? 'white' : 'black',
+      borderWidth: 1,
+      borderRadius: 10,
+      padding: 10,
     },
     addBtn: {
       position: "absolute",

@@ -3,6 +3,7 @@ import { Text, View, FlatList, Pressable, StyleSheet } from "react-native";
 import { useRouter } from 'expo-router';
 import OptionModal from "./OptionModal";
 import { ThemeContext } from "../context/ThemeContext";
+import { formatDate } from "../utils/utils";
 
 const TodoList = ({ todos }) => {
   const { theme } = useContext(ThemeContext);
@@ -10,12 +11,6 @@ const TodoList = ({ todos }) => {
   const [selectedTodo, setSelectedTodo] = useState(null); // Selected item for the modal
   const style = styles(theme);
   const router = useRouter();
-
-  // Utility function to format the creation date
-  const formatDate = (timestamp) => {
-    const date = new Date(timestamp);
-    return date.toLocaleDateString();
-  };
 
   // Handle press event
   const handlePress = (id) => {
