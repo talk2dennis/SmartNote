@@ -173,7 +173,9 @@ const styles = (theme) =>
             margin: 5,
         },
         cancelButton: {
-            backgroundColor: "red",
+            backgroundColor:'#666666',
+            borderColor: theme.tint,
+            borderWidth: 1,
         },
         buttonText: {
             color: theme.buttonTextColor,
