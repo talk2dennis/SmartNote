@@ -107,7 +107,7 @@ const AddNote = ({ note, handleNotificationUpdate }) => {
                     placeholderTextColor={"gray"}
                 />
                 <TextInput
-                    style={[style.input, { flex: 1, textAlignVertical: "top" }]} // Take remaining space
+                    style={[style.input, style.description]}
                     value={text}
                     onChangeText={setText}
                     placeholder="Enter your note here..."
@@ -118,7 +118,7 @@ const AddNote = ({ note, handleNotificationUpdate }) => {
                     style={style.input}
                     value={tags}
                     onChangeText={setTags}
-                    placeholder="Enter tags or subjects (comma-separated)..."
+                    placeholder="Enter tags (comma-separated)..."
                     placeholderTextColor={"gray"}
                 />
                 <View style={style.buttonContainer}>
@@ -153,12 +153,17 @@ const styles = (theme) =>
             borderWidth: 1,
             borderColor: theme.tint,
             color: theme.text,
-            width: "100%",
-            padding: 16,
+            height: 50,
             marginBottom: 10,
             borderRadius: 8,
             overflow: "hidden",
             fontsize: 16,
+        },
+        description: {
+            textAlign: "left",
+            textAlignVertical: "top",
+            flex: 1,
+            minHeight: 400,
         },
         buttonContainer: {
             flexDirection: "row",
