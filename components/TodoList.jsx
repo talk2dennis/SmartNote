@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import OptionModal from "./OptionModal";
+import Entypo from '@expo/vector-icons/Entypo';
 import { ThemeContext } from "../context/ThemeContext";
 import { formatDate } from "../utils/utils";
 
@@ -23,12 +24,15 @@ const TodoList = ({ todos }) => {
 
   // Animate the FlatList on mount
   useEffect(() => {
-    Animated.timing(animationValue, {
+    const animation = Animated.timing(animationValue, {
       toValue: 1,
       duration: 500,
       easing: Easing.out(Easing.exp),
       useNativeDriver: true,
-    }).start();
+    });
+
+    animation.start();
+    return () => animation.stop(); // Cleanup animation on unmount
   }, [animationValue]);
 
   const handlePress = (id) => router.push(`notes/${id}`);
@@ -44,17 +48,29 @@ const TodoList = ({ todos }) => {
   };
 
   const renderItem = ({ item }) => (
-    <Pressable
-      style={({ pressed }) => [style.card, pressed && style.pressedCard]}
-      onPress={() => handlePress(item.id)}
-      onLongPress={() => handleLongPress(item)}
-    >
-      <Text style={style.title}>{item.title}</Text>
-      <Text style={style.description}>
-        {item.description.length > 50
-          ? `${item.description.substring(0, 50)}...`
-          : item.description}
-      </Text>
+    <View style={style.card}>
+      <View style={style.titleContainer}>
+        <Text style={style.title}>{item.title}</Text>
+        <Pressable
+          style={style.button}
+          onPress={() => handleLongPress(item)}
+          accessible
+          accessibilityLabel="Options menu"
+        >
+          <Entypo name="dots-three-vertical" size={18} color={"gray"} />
+        </Pressable>
+      </View>
+      <Pressable
+        style={({ pressed }) => [ pressed && style.pressedCard]}
+        onPress={() => handlePress(item.id)}
+        onLongPress={() => handleLongPress(item)}
+      >
+        <Text style={style.description}>
+          {item.description.length > 50
+            ? `${item.description.substring(0, 50)}...`
+            : item.description}
+        </Text>
+      </Pressable>
       <View style={style.tagContainer}>
         {item.tags.map((tag, index) => (
           <Text key={index} style={style.tag}>
@@ -68,16 +84,18 @@ const TodoList = ({ todos }) => {
           ? formatDate(item.updatedAt)
           : formatDate(item.createdAt)}
       </Text>
-    </Pressable>
+    </View>
   );
 
   return (
     <View style={style.container}>
-      {todos ? (
+      {todos && todos.length > 0 ? (
         <Animated.FlatList
           data={todos}
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}
+          initialNumToRender={10}
+          windowSize={5}
           style={{
             opacity: animationValue,
             transform: [
@@ -92,7 +110,11 @@ const TodoList = ({ todos }) => {
           renderItem={renderItem}
         />
       ) : (
-        <Text style={style.emptyText}>Search not found. Can you try searching with tags or description?</Text>
+        <Text style={style.emptyText}>
+          {todos && todos.length === 0
+            ? "No tasks to display. Add a new one!"
+            : "Search not found. Try using different tags or descriptions."}
+        </Text>
       )}
       {modalVisible && (
         <OptionModal
@@ -109,10 +131,10 @@ const styles = (theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.background,
+      backgroundColor: theme?.background || "#fff",
     },
     card: {
-      backgroundColor: theme.cardBackground,
+      backgroundColor: theme?.cardBackground || "#f8f8f8",
       marginVertical: 8,
       borderRadius: 8,
       padding: 10,
@@ -122,18 +144,22 @@ const styles = (theme) =>
       shadowRadius: 4,
       elevation: 3,
     },
+    titleContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
     pressedCard: {
       transform: [{ scale: 0.95 }],
     },
     title: {
       fontSize: 18,
       fontWeight: "bold",
-      color: theme.text,
+      color: theme?.text || "#000",
       marginBottom: 8,
     },
     description: {
       fontSize: 14,
-      color: theme.textSecondary,
+      color: theme?.textSecondary || "#555",
       marginBottom: 8,
     },
     tagContainer: {
@@ -142,8 +168,8 @@ const styles = (theme) =>
       marginBottom: 8,
     },
     tag: {
-      backgroundColor: theme.tagBackground,
-      color: theme.tagText,
+      backgroundColor: theme?.tagBackground || "#e0e0e0",
+      color: theme?.tagText || "#000",
       paddingHorizontal: 8,
       paddingVertical: 4,
       borderRadius: 4,
@@ -153,12 +179,12 @@ const styles = (theme) =>
     },
     date: {
       fontSize: 12,
-      color: theme.textSecondary,
+      color: theme?.textSecondary || "#555",
       textAlign: "right",
     },
     emptyText: {
       fontSize: 16,
-      color: theme.textSecondary,
+      color: theme?.textSecondary || "#555",
       textAlign: "center",
       marginTop: 20,
     },

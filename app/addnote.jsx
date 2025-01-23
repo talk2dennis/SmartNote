@@ -157,7 +157,7 @@ const styles = (theme) =>
             marginBottom: 10,
             borderRadius: 8,
             overflow: "hidden",
-            fontsize: 16,
+            fontSize: 18,
         },
         description: {
             textAlign: "left",
