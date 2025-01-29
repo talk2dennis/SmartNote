@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Modal, View, Pressable, Text, Alert, Platform } from "react-native";
+import { useRouter } from "expo-router";
 import { ThemeContext } from "../context/ThemeContext";
 import { NoteContext } from "../context/NoteContext";
 
@@ -8,6 +9,14 @@ const OptionModal = ({ toggleVisibility, modalVisible, selectedTodo }) => {
     const { theme } = useContext(ThemeContext);
     const style = styles(theme)
     const { removeNote } = useContext(NoteContext);
+    const router = useRouter();
+
+    // handle edit
+    const handleEdit = () => {
+        toggleVisibility();
+        selectedTodo.editing = true;
+        router.push(`notes/${selectedTodo.id}`);
+    }
 
     // handle delete
     const handleDelete = (id) => {
@@ -54,8 +63,8 @@ const OptionModal = ({ toggleVisibility, modalVisible, selectedTodo }) => {
         >
             <Pressable style={style.modalBackground} onPress={toggleVisibility}>
                 <View style={style.modalContainer}>
-                    <Pressable >
-                        <Text style={style.modalOption}>Edit Note[{selectedTodo.id}]</Text>
+                    <Pressable onPress={handleEdit} >
+                        <Text style={style.modalOption}>Edit Note</Text>
                     </Pressable>
                     <Pressable onPress={()=> handleDelete(selectedTodo.id)}>
                         <Text style={style.modalOption}>Delete Note</Text>
